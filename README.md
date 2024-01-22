@@ -2,5 +2,5 @@
 
 
 ## image captioning demo 
- - [![demo for captioning](https://i.stack.imgur.com/Vp2cE.png)](./demo.mp4)
+![demo for captioning](./demo.mp4)
 
