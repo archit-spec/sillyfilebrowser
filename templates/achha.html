@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cool HTML Page with API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    #quote {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    #author {
+      font-style: italic;
+    }
+    
+    #newQuote {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Inspiration Generator</h1>
+  <div id="quote"></div>
+  <div id="author"></div>
+  <button id="newQuote">Get New Quote</button>
+
+  <script>
+    // JavaScript code to fetch quotes from an API and display them
+    var quoteElement = document.getElementById("quote");
+    var authorElement = document.getElementById("author");
+    var newQuoteButton = document.getElementById("newQuote");
+    
+    function fetchQuote() {
+      fetch("https://api.quotable.io/random")
+        .then(response => response.json())
+        .then(data => {
+          quoteElement.textContent = data.content;
+          authorElement.textContent = "- " + data.author;
+        })
+        .catch(error => console.log(error));
+    }
+    
+    // Fetch a new quote when the page loads
+    document.addEventListener("DOMContentLoaded", fetchQuote);
+    
+    // Add a click event listener to the "Get New Quote" button
+    newQuoteButton.addEventListener("click", fetchQuote);
+  </script>
+</body>
+</html>

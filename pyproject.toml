@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "filehost"
+version = "0.1.0"
+description = "Semantically indexed filehost with more ml magic"
+authors = ["dumball <archit1290@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.3"
+transformers = "^4.33.1"
+torch = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
