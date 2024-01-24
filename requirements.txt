@@ -3,7 +3,7 @@ boto3
 transformers
 torch
 urllib3
-opencv-python
+tensordict
 
 
 

@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, send_from_directory, render_template, jsonify
 import os
+from flask_cors import CORS
+from src.captioning  import ImageCaptioning 
+
 UPLOAD_FOLDER = "uploads"
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app = Flask(__name__)
+CORS(app)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 @app.route("/")
@@ -18,18 +22,18 @@ def sorry():
 
 
 
-#@app.route("/upload", methods=["POST"])
-#def upload():
-#    file = request.files["file"]
-#    filename = file.filename
-#    file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-#    return "File uploaded successfully."
+@app.route("/upload", methods=["POST"])
+def upload():
+    file = request.files["file"]
+    filename = file.filename
+    file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+    return "File uploaded successfully."
 
 
-#@app.route("/download/<filename>")
-#def download(filename):
-#    uploads = os.path.join(app.root_path, app.config["UPLOAD_FOLDER"])
-#    return send_from_directory(directory=uploads, path=filename)
+@app.route("/download/<filename>")
+def download(filename):
+    uploads = os.path.join(app.root_path, app.config["UPLOAD_FOLDER"])
+    return send_from_directory(directory=uploads, path=filename)
 
 
 @app.route("/chat", methods=["POST", "GET"])
@@ -42,31 +46,24 @@ def chatora():
     return jsonify(output=output['choices'][0]['text'])
 
 
+@app.route("/getcaptions", methods=["GET"])
+def getcaptions():
+    imagec = ImageCaptioning()
+    d = imagec.make_index()
+    resp = jsonify(d)
+    resp.status_code = 200
+    return resp
 
-@app.route('/name')
-def method_name():
-    name = "allah"
-    return render_template('niga.html',name=name)
 
 
-
-@app.route('/upload'):
-def upload():
-    
-
-@app.route('/play'):
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5001)
 
 
 #@app.route("/rename/<img>", methods=["POST"])
 #def rename(img):
 #    import predict_step from renamefiles
 #    predict_step
-
-
-
-@app.route('/watch')

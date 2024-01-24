@@ -3,6 +3,8 @@ import torch
 from PIL import Image
 import os
 
+
+
 class ImageCaptioning:
     def __init__(self):
         self.model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
@@ -43,9 +45,9 @@ class ImageCaptioning:
             return False
 
     @staticmethod
-    def check_images_in_directory(directory):
+    def get_images_in_directory(directory):
+        
         image_paths = []
-
         for filename in os.listdir(directory):
             filepath = os.path.join(directory, filename)
             if ImageCaptioning.is_image(filepath):
@@ -70,24 +72,14 @@ class ImageCaptioning:
             self.rename_file(image_path, new_filename)
 
 
+    def make_index(self):
+       directory_path = "/home/dumball/pngs/"
+       image_paths = self.get_images_in_directory(directory_path)
+       dictionary = {image_path: self.predict_caption([image_path]) for image_path in image_paths}
+       return dictionary
+    
 
 
-if __name__ == "__main__":
-    image_captioning = ImageCaptioning()
     
-    try:
-        directory_path = input("Enter directory path: ")  # Replace with your directory path
-    except:
-        directory_path = os.path.expanduser("~")
-    
-    image_paths = image_captioning.check_images_in_directory(directory_path)
-    
-    if image_paths:
-        print("Image files in the directory:")
-        for image_path in image_paths:
-            print(image_path)
-        
-        dictionary = {image_path: image_captioning.predict_caption([image_path]) for image_path in image_paths}
-        print(dictionary)
-    else:
-        print("No image files found in the directory.")
+
+
