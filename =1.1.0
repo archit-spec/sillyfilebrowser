@@ -1,0 +1,86 @@
+Collecting causal-conv1d
+  Downloading causal_conv1d-1.1.1.tar.gz (6.6 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: torch in ./env/lib/python3.10/site-packages (from causal-conv1d) (2.0.1)
+Requirement already satisfied: packaging in ./env/lib/python3.10/site-packages (from causal-conv1d) (23.1)
+Collecting buildtools (from causal-conv1d)
+  Downloading buildtools-1.0.6.tar.gz (446 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 446.5/446.5 kB 1.8 MB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting ninja (from causal-conv1d)
+  Downloading ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl.metadata (5.3 kB)
+Requirement already satisfied: sqlalchemy in ./env/lib/python3.10/site-packages (from buildtools->causal-conv1d) (2.0.22)
+Collecting argparse (from buildtools->causal-conv1d)
+  Downloading argparse-1.4.0-py2.py3-none-any.whl (23 kB)
+Collecting twisted (from buildtools->causal-conv1d)
+  Downloading twisted-23.10.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting simplejson (from buildtools->causal-conv1d)
+  Downloading simplejson-3.19.2-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.1 kB)
+Collecting furl (from buildtools->causal-conv1d)
+  Downloading furl-2.1.3-py2.py3-none-any.whl (20 kB)
+Requirement already satisfied: requests in ./env/lib/python3.10/site-packages (from buildtools->causal-conv1d) (2.31.0)
+Collecting docopt (from buildtools->causal-conv1d)
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: python-dateutil in ./env/lib/python3.10/site-packages (from buildtools->causal-conv1d) (2.8.2)
+Requirement already satisfied: jinja2 in ./env/lib/python3.10/site-packages (from buildtools->causal-conv1d) (3.1.2)
+Collecting redo (from buildtools->causal-conv1d)
+  Downloading redo-2.0.4-py2.py3-none-any.whl (12 kB)
+Requirement already satisfied: filelock in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (3.12.2)
+Requirement already satisfied: typing-extensions in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (4.8.0)
+Requirement already satisfied: sympy in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (1.12)
+Requirement already satisfied: networkx in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (2.8.8)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu11==11.7.99 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.7.99)
+Requirement already satisfied: nvidia-cuda-runtime-cu11==11.7.99 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.7.99)
+Requirement already satisfied: nvidia-cuda-cupti-cu11==11.7.101 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.7.101)
+Requirement already satisfied: nvidia-cudnn-cu11==8.5.0.96 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (8.5.0.96)
+Requirement already satisfied: nvidia-cublas-cu11==11.10.3.66 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.10.3.66)
+Requirement already satisfied: nvidia-cufft-cu11==10.9.0.58 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (10.9.0.58)
+Requirement already satisfied: nvidia-curand-cu11==10.2.10.91 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (10.2.10.91)
+Requirement already satisfied: nvidia-cusolver-cu11==11.4.0.1 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.4.0.1)
+Requirement already satisfied: nvidia-cusparse-cu11==11.7.4.91 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.7.4.91)
+Requirement already satisfied: nvidia-nccl-cu11==2.14.3 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (2.14.3)
+Requirement already satisfied: nvidia-nvtx-cu11==11.7.91 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (11.7.91)
+Requirement already satisfied: triton==2.0.0 in ./env/lib/python3.10/site-packages (from torch->causal-conv1d) (2.0.0)
+Requirement already satisfied: setuptools in ./env/lib/python3.10/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch->causal-conv1d) (65.5.0)
+Requirement already satisfied: wheel in ./env/lib/python3.10/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch->causal-conv1d) (0.40.0)
+Requirement already satisfied: cmake in ./env/lib/python3.10/site-packages (from triton==2.0.0->torch->causal-conv1d) (3.26.4)
+Requirement already satisfied: lit in ./env/lib/python3.10/site-packages (from triton==2.0.0->torch->causal-conv1d) (16.0.6)
+Requirement already satisfied: six>=1.8.0 in ./env/lib/python3.10/site-packages (from furl->buildtools->causal-conv1d) (1.16.0)
+Collecting orderedmultidict>=1.0.1 (from furl->buildtools->causal-conv1d)
+  Downloading orderedmultidict-1.0.1-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: MarkupSafe>=2.0 in ./env/lib/python3.10/site-packages (from jinja2->buildtools->causal-conv1d) (2.1.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./env/lib/python3.10/site-packages (from requests->buildtools->causal-conv1d) (3.2.0)
+Requirement already satisfied: idna<4,>=2.5 in ./env/lib/python3.10/site-packages (from requests->buildtools->causal-conv1d) (3.4)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./env/lib/python3.10/site-packages (from requests->buildtools->causal-conv1d) (1.26.16)
+Requirement already satisfied: certifi>=2017.4.17 in ./env/lib/python3.10/site-packages (from requests->buildtools->causal-conv1d) (2023.5.7)
+Requirement already satisfied: greenlet!=0.4.17 in ./env/lib/python3.10/site-packages (from sqlalchemy->buildtools->causal-conv1d) (2.0.2)
+Requirement already satisfied: mpmath>=0.19 in ./env/lib/python3.10/site-packages (from sympy->torch->causal-conv1d) (1.3.0)
+Requirement already satisfied: attrs>=21.3.0 in ./env/lib/python3.10/site-packages (from twisted->buildtools->causal-conv1d) (23.1.0)
+Collecting automat>=0.8.0 (from twisted->buildtools->causal-conv1d)
+  Downloading Automat-22.10.0-py2.py3-none-any.whl (26 kB)
+Collecting constantly>=15.1 (from twisted->buildtools->causal-conv1d)
+  Downloading constantly-23.10.4-py3-none-any.whl.metadata (1.8 kB)
+Collecting hyperlink>=17.1.1 (from twisted->buildtools->causal-conv1d)
+  Downloading hyperlink-21.0.0-py2.py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.6/74.6 kB 12.2 MB/s eta 0:00:00
+Collecting incremental>=22.10.0 (from twisted->buildtools->causal-conv1d)
+  Downloading incremental-22.10.0-py2.py3-none-any.whl (16 kB)
+Collecting zope-interface>=5 (from twisted->buildtools->causal-conv1d)
+  Downloading zope.interface-6.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 3.6 MB/s eta 0:00:00
+Downloading ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (307 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.2/307.2 kB 7.1 MB/s eta 0:00:00
+Downloading simplejson-3.19.2-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (137 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.9/137.9 kB 7.2 MB/s eta 0:00:00
+Downloading twisted-23.10.0-py3-none-any.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 4.7 MB/s eta 0:00:00
+Downloading constantly-23.10.4-py3-none-any.whl (13 kB)
+Downloading zope.interface-6.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (247 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 247.1/247.1 kB 754.4 kB/s eta 0:00:00
+Building wheels for collected packages: causal-conv1d, buildtools, docopt
+  Building wheel for causal-conv1d (setup.py): started
+  Building wheel for causal-conv1d (setup.py): finished with status 'canceled'
