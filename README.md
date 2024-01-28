@@ -10,3 +10,8 @@
 - add support for pdfs, and videos using sentence transformer embeddings and video captioning models
 
 
+## to run. do:
+ build image:
+``` docker build -t filehost .```
+ and run:
+``` docker run -p 50001 filehost ```
