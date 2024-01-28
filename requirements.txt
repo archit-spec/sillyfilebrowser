@@ -1,9 +1,10 @@
 flask
-boto3
 transformers
 torch
 urllib3
+requests
+pillow
 tensordict
-
+flask-cors
 
 

@@ -16,10 +16,6 @@ def index():
 
     return render_template("index.html")
 
-@app.route("/sorry")
-def sorry():
-    return render_template("jewgle.html")
-
 
 
 @app.route("/upload", methods=["POST"])
@@ -37,7 +33,7 @@ def download(filename):
 
 
 @app.route("/chat", methods=["POST", "GET"])
-def chatora():
+def chating():
     from llama_cpp import Llama
     chat = request.form.get("chat")
     from_user = request.form.get("from_user")
