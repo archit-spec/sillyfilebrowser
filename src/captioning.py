@@ -72,7 +72,8 @@ class ImageCaptioning:
             self.rename_file(image_path, new_filename)
 
 
-    def make_index(self, directory_path):
+    def make_index(self):
+       directory_path = "/home/dumball/pngs"
        image_paths = self.get_images_in_directory(directory_path)
        dictionary = {image_path: self.predict_caption([image_path]) for image_path in image_paths}
        return dictionary
