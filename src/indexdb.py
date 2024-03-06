@@ -1,4 +1,3 @@
-from captioning import ImageCaptioning
 
 
 

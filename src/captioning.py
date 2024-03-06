@@ -17,6 +17,7 @@ class ImageCaptioning:
         self.max_length = 16
         self.num_beams = 4
         self.gen_kwargs = {"max_length": self.max_length, "num_beams": self.num_beams}
+#        self.embedding = model(**inputs)
     
     def predict_caption(self, image_paths):
         images = []
