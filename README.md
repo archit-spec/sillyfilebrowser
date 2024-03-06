@@ -1,7 +1,7 @@
 #  Deeplearning based filebrowser (WIP):
 
 ## filebrowser demo 
-![demo](https://youtu.be/CIXq6xz7tHc)
+![demo](https://www.youtube.com/watch?v=CIXq6xz7tHc)
 
 - aim is to provide a better search in filebrowsers when the filebrowsere names are cryptic and it is hard to find an image or a document based on the standard search
 ## todo
