@@ -3,7 +3,9 @@ import torch
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from captioning import ImageCaptioning
-
+import timm
+import PIL
+from transformers import CLIPProcessor, CLIPModel
 # Load pre-trained text embedding model (e.g., Sentence Transformer)
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
 model = AutoModel.from_pretrained("sentence-transformers/all-mpnet-base-v2")
@@ -13,19 +15,28 @@ def embed_text(text_query):
     encoded_input = tokenizer(text_query, return_tensors="pt")
     with torch.no_grad():
         features = model(**encoded_input)
-    return features[0].mean(dim=0).cpu().numpy()  # Average pooled hidden state
+    return features.cpu().numpy()  # Average pooled hidden state
+
 
 # Load pre-trained image feature extractor (e.g., EfficientNet)
-from transformers import CLIPProcessor, CLIPModel
 feature_extractor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 
 # Function to extract image features (customize based on your model)
 def extract_image_features(image_path):
-    image = feature_extractor(image_path, return_tensors="pt")
-    with torch.no_grad():
-        features = model.encode_image(**image)
-    return features[0].cpu().numpy()  # Image features
+  model = timm.create_model('vit_base_patch16_224', pretrained=True)
+  model = model.eval()
+
+  with torch.no_grad():
+    image = preprocess_image(image_path)  # Preprocess image based on ViT requirements
+    images = image.unsqueeze(0).to('cuda')  # Add batch dimension and move to GPU if available
+    features = model(images)
+
+#def extract_image_features(image_path):
+#    image = feature_extractor(image_path, return_tensors="pt")
+#    with torch.no_grad():
+#        features = model.encode_image(**image)
+#    return features[0].cpu().numpy()  # Image features
 
 # Load your dataset of images and their corresponding textual descriptions
 def load_dataset(a, b):
@@ -48,16 +59,18 @@ def search_images(text_query, index, image_features, top_k=5):
 
 # Example usage
 alo = ImageCaptioning()
-dic = alo.make_index()
+my_dict = alo.make_index()
+a = list(my_dict.keys())
+b = [item for sublist in list(my_dict.values()) for item in sublist]
 
-a = list(dic.keys())
-b = list(dic.values())
+#b = list(my_dict.values())
+print("a:", a, "\n", "b:",b)
 
 image_paths, descriptions = load_dataset(a,b)
 image_features = [extract_image_features(path) for path in image_paths]
 index = create_faiss_index(image_features)
 
-text_query = "A cat sitting on a chair"
+text_query = input("query: ")
 results = search_images(text_query, index, image_paths)
 print(f"Top {len(results)} similar images for '{text_query}':")
 for image_path in results:

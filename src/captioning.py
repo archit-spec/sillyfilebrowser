@@ -2,8 +2,8 @@ from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoToken
 import torch
 from PIL import Image
 import os
-
-
+import faiss
+import joblib
 
 class ImageCaptioning:
     def __init__(self):
@@ -19,6 +19,11 @@ class ImageCaptioning:
         self.gen_kwargs = {"max_length": self.max_length, "num_beams": self.num_beams}
 #        self.embedding = model(**inputs)
     
+
+    def get_embedding(self, inputs):
+        return self.model(**inputs)
+
+
     def predict_caption(self, image_paths):
         images = []
         for image_path in image_paths:
@@ -35,6 +40,8 @@ class ImageCaptioning:
         preds = self.tokenizer.batch_decode(output_ids, skip_special_tokens=True)
         preds = [pred.strip() for pred in preds]
         return preds
+
+
 
     @staticmethod
     def is_image(filename):
@@ -56,6 +63,8 @@ class ImageCaptioning:
 
         return image_paths
 
+
+
     def rename_file(self, image_path, new_name):
         if os.path.isfile(image_path):
             dirname = os.path.dirname(image_path)
@@ -73,14 +82,24 @@ class ImageCaptioning:
             self.rename_file(image_path, new_filename)
 
 
-    def make_index(self):
-       directory_path = "/home/dumball/pngs"
+    def make_index(self, directory_path):
+#     directory_path = "/home/dumball/pngs/"
        image_paths = self.get_images_in_directory(directory_path)
        dictionary = {image_path: self.predict_caption([image_path]) for image_path in image_paths}
        return dictionary
+
     
 
 
+
+      
+
+
+
+#alo = ImageCaptioning()
+#a = alo.make_index()
+
+#print(a)
     
 
 

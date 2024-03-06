@@ -1,7 +1,7 @@
 #  Deeplearning based filebrowser (WIP):
 
 ## image captioning demo 
-![demo for captioning](./demo.mp4)
+![demo for captioning](./filebrowser_demo.mp4)
 
 - aim is to provide a better search in filebrowsers when the filebrowsere names are cryptic and it is hard to find an image or a document based on the standard search
 ## todo

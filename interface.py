@@ -22,38 +22,38 @@ def main():
     # Get filtered list of images
     supported_extensions = [".jpg", ".jpeg", ".png"]
     image_list = [
-        os.path.join(dir_path, f)
+        (os.path.join(dir_path, f), os.path.basename(f))
         for f in os.listdir(dir_path)
         if os.path.isfile(os.path.join(dir_path, f))
         and os.path.splitext(f)[1].lower() in supported_extensions
     ]
 
     # Add search bar
-    search_term = st.text_input("Search images:")
+    search_term = st.text_input("Search images:", "")
 
-    # Filter images based on search term
-    filtered_images = [
-        image_path for image_path in image_list if search_term.lower() in os.path.basename(image_path).lower()
-    ]
+   # Filter images based on search term
+   # filtered_images = [
+   #     image_path_filename
+   #     for image_path_filename in image_list
+   #     if search_term.lower() in image_path_filename[1].lower()
+   # ]
 
-    # Sort images alphabetically
-    filtered_images.sort()
 
-    # Display images in grid layout
-    num_cols = 4  # Adjust the number of columns as desired
-    for i, image_path in enumerate(filtered_images):
-        if i % num_cols == 0:
-            # Create a new row after every `num_cols` images
-            col1, col2, col3, col4 = st.columns(num_cols)
-        image = Image.open(image_path)
-        if i % num_cols == 0:
-            col1.image(image)
-        elif i % num_cols == 1:
-            col2.image(image)
-        elif i % num_cols == 2:
-            col3.image(image)
-        else:
-            col4.image(image)
+    image_features = [extract_image_features(path) for path in image_list]
+    index = create_faiss_index(image_features)
+
+    filtered_images = search_images(search_term, index, image_features, top_k=5)
+
+    # Define CSS class (assuming you have a style.css file linked)
+    st.markdown(f"<link rel='stylesheet' href='path/to/your/style.css'>", unsafe_allow_html=True)
+
+    # Display images with filename
+    columns = st.columns(2)  # Adjust the number of columns as desired
+    for i, (image_path, filename) in enumerate(filtered_images):
+        with columns[i % len(columns)]:
+            image = Image.open(image_path)
+            st.image(image)
+            st.markdown(f"<p class='caption-center'>{filename}</p>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
